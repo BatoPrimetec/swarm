@@ -1,0 +1,51 @@
+Install Docker + Swarm + Compose:
+
+sudo apt-get remove docker docker-engine docker.io containerd runc -y
+sudo apt-get update -y
+sudo apt-get install ca-certificates curl gnupg lsb-release -y
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+----------------------------------------------------------
+sudo usermod -aG docker user / relog
+----------------------------------------------------------
+TCP port 2377 for cluster management communications - this is if you have multiple Swarm Managers.
+TCP and UDP port 7946 for communication among nodes - for all nodes on the Swarm environment.
+UDP port 4789 for overlay network traffic
+----------------------------------------------------------
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo systemctl status docker
+sudo docker run hello-world
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+Swarm:
+docker swarm init
+docker info
+docker node ls
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+portainer in stack (swarm):
+curl -L https://downloads.portainer.io/portainer-agent-stack.yml -o portainer-agent-stack.yml
+sed -i 's/2.11.1/latest/' portainer-agent-stack.yml
+docker stack deploy -c portainer-agent-stack.yml portainer
+----------------------------------------------------------
+Varios
+sudo docker service create --replicas 1 --name helloworld alpine ping google.com
+sudo docker service ls
+sudo docker node ps
+sudo docker service scale helloworld=5
+sudo docker service ps helloworld
+sudo docker service inspect helloworld
+
+docker service create --replicas 1 --name test-httpd -p 8000:80 httpd:alpin
+docker service inspect test-httpd
+docker service inspect --pretty test-httpd
+----------------------------------------------------------
+CleanUP
+docker system prune --all --volumes --force
+----------------------------------------------------------

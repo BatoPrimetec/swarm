@@ -1,0 +1,18 @@
+apk add mc
+apk add htop
+apk add git
+apk add nano
+apk add curl
+nano /etc/apk/repositories (enable community)
+apk add docker
+rc-update add docker boot
+service docker start
+
+apk add docker-compose
+
+Portainer:
+curl -L https://downloads.portainer.io/ce2-16/portainer-agent-stack.yml -o portainer-agent-stack.yml
+docker stack deploy -c portainer-agent-stack.yml portainer
+
+CleanUP
+docker system prune --all --volumes --force
