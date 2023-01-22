@@ -1,0 +1,6 @@
+https://nginxproxymanager.com/
+
+Email:    admin@example.com
+Password: changeme
+
+docker stack deploy -c docker-compose.yml proxymgr
