@@ -1,0 +1,5 @@
+Crea password Aleatorias y las mete en secret staticos:
+cat /dev/urandom | tr -dc '0-9a-zA-Z!@#$%^&*_+-' | head -c 15 | docker secret create db_password -
+cat /dev/urandom | tr -dc '0-9a-zA-Z!@#$%^&*_+-' | head -c 15 | docker secret create db_root_password -
+
+docker stack deploy --compose-file wordpress_mysql.yml wrdmysql
