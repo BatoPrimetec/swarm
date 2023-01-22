@@ -8,4 +8,3 @@ services:
     volumes:
       - /var/www:/usr/share/nginx/html
       - /var/log/nginx:/var/log/nginx
-      - /var/nginx:/etc/nginx/conf

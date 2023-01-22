@@ -1,1 +1,2 @@
+cp index.html /var/www
 docker stack deploy -c docker-compose.yaml test
