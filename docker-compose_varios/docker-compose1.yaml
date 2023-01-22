@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - /var/www:/usr/share/nginx/html
+      - /var/log/nginx:/var/log/nginx
+      - /var/nginx:/etc/nginx/conf
