@@ -3,12 +3,12 @@ version: '3'
 services:
   roundcubemail:
     image: roundcube/roundcubemail:latest-fpm
-    container_name: roundcubemail
+    #container_name: roundcubemail
     # restart: unless-stopped
     depends_on:
       - roundcubedb
-    links:
-      - roundcubedb
+    #links:
+    #  - roundcubedb
     ports:
       - 9001:9000
     volumes:
@@ -25,7 +25,7 @@ services:
 
   roundcubedb:
     image: postgres:latest
-    container_name: roundcubedb
+    #container_name: roundcubedb
     # restart: unless-stopped
     ports:
       - 5432:5432
@@ -38,7 +38,7 @@ services:
 
   roundcubenginx:
     image: nginx:latest
-    container_name: roundcubenginx
+    #container_name: roundcubenginx
     # restart: unless-stopped
     ports:
       - 9009:80
@@ -46,8 +46,8 @@ services:
       # - '443:443'
     depends_on:
       - roundcubemail
-    links:
-      - roundcubemail
+    #links:
+    #  - roundcubemail
     volumes:
       - /var/www/html/rc/html:/var/www/html
       - /var/www/html/rc/nginx/templates:/etc/nginx/templates
