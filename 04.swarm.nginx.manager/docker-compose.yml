@@ -3,7 +3,7 @@ services:
   app:
     image: 'jc21/nginx-proxy-manager:latest'
     deploy:
-    restart_policy:
+      restart_policy:
         condition: on-failure #(restart: unless-stopped)
     ports:
       - '80:80' # Public HTTP Port
@@ -18,20 +18,20 @@ services:
       # Uncomment this if IPv6 is not enabled on your host
       DISABLE_IPV6: 'true'
     volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
+      - /opt/swarm/proxymanager/data/:/data
+      - /opt/swarm/proxymanager/data/letsencrypt:/etc/letsencrypt
     depends_on:
       - db
 
   db:
     image: 'jc21/mariadb-aria:latest'
     deploy:
-        restart_policy:
-            condition: on-failure #(restart: unless-stopped)
+      restart_policy:
+        condition: on-failure #(restart: unless-stopped)
     environment:
       MYSQL_ROOT_PASSWORD: 'npm_'
       MYSQL_DATABASE: 'npm_'
       MYSQL_USER: 'npm_'
       MYSQL_PASSWORD: 'npm_'
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - /opt/swarm/proxymanager/data/mysql:/var/lib/mysql

@@ -1,6 +1,8 @@
 https://nginxproxymanager.com/
-
 Email:    admin@example.com
 Password: changeme
+
+sudo mkdir -p /opt/swarm/proxymanager/data/letsencrypt
+sudo mkdir -p /opt/swarm/proxymanager/data/mysql
 
 docker stack deploy -c docker-compose.yml proxymgr

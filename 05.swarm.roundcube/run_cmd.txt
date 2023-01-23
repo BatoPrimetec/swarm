@@ -1,0 +1,6 @@
+
+sudo mkdir -p /var/www/html/rc/html
+sudo mkdir -p /var/www/html/rc/postgres
+sudo mkdir -p /var/www/html/rc/nginx/templates
+
+docker stack deploy -c docker-compose.yml rc
