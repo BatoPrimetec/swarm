@@ -10,7 +10,7 @@ services:
     links:
       - roundcubedb
     ports:
-      - 9000:9000
+      - 9001:9000
     volumes:
       - /var/www/html/rc/html:/var/www/html
     environment:
