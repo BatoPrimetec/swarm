@@ -58,7 +58,7 @@ services:
       # - ./certs-data:/data/letsencrypt
     environment:
       - NGINX_HOST=localhost  # set your local domain or your live domain
-      - NGINX_PHP_CGI=roundcubemail:9000  # same as roundcubemail container name
+      - NGINX_PHP_CGI=roundcubemail:9001  # same as roundcubemail container name
 
 ### Optional: add a full mail server stack to use with Roundcube like https://hub.docker.com/r/tvial/docker-mailserver
 #   mailserver:
